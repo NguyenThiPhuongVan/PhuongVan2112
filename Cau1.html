@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiểm tra email hợp lệ</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        
+        .error {
+            color: red;
+        }
+        
+        .success {
+            color: palevioletred;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Nhập địa chỉ email</h2>
+    <form id="emailForm">
+        <label for="email">Email:</label><br>
+        <input type="text" id="email" name="email" required>
+        <br><br>
+        <button type="submit">Kiểm tra</button>
+        <p id="message"></p>
+    </form>
+
+    <script>
+        document.getElementById("emailForm").addEventListener("submit", function(event) {
+            event.preventDefault(); //Chặn form gửi đi 
+
+            const email = document.getElementById("email").value.trim();
+            const message = document.getElementById("message");
+
+            const emailRegex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g;
+
+            //Kiểm tra rỗng
+            if (email === "") {
+                message.textContent = "Vui lòng nhập email.";
+                message.className = "error";
+                return;
+            }
+
+            //Kiểm tra định dạng
+            if (!emailRegex.test(email)) {
+                message.textContent = "Email không hợp lệ hoặc đuôi không được chấp nhận (.vn, .org, .edu, .net).";
+                message.className = "error";
+                return;
+            }
+
+            //Nếu hợp lệ
+            message.textContent = "Email hợp lệ!";
+            message.className = "success";
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cau 1_10</title>
+</head>
+
+<body>
+    h2> Kiểm Tra Dữ Liệu Nhập Vào (1–10)</h2>
+
+    <form id="dataForm">
+        <div class="form-group">
+            <label>Email:</label><br>
+            <input type="text" id="email">
+        </div>
+        <div class="form-group">
+            <label>Số điện thoại (VN):</label><br>
+            <input type="text" id="phone">
+        </div>
+        <div class="form-group">
+            <label>Mật khẩu mạnh:</label><br>
+            <input type="text" id="password">
+        </div>
+        <div class="form-group">
+            <label>Ngày sinh (dd/mm/yyyy):</label><br>
+            <input type="text" id="dob">
+        </div>
+        <div class="form-group">
+            <label>Username:</label><br>
+            <input type="text" id="username">
+        </div>
+        <div class="form-group">
+            <label>Địa chỉ IP (IPv4):</label><br>
+            <input type="text" id="ip">
+        </div>
+        <div class="form-group">
+            <label>Mã bưu điện (VN):</label><br>
+            <input type="text" id="postal">
+        </div>
+        <div class="form-group">
+            <label>Số thẻ tín dụng (16 số):</label><br>
+            <input type="text" id="creditcard">
+        </div>
+        <div class="form-group">
+            <label>URL:</label><br>
+            <input type="text" id="url">
+        </div>
+        <div class="form-group">
+            <label>Link (kiểu custom):</label><br>
+            <input type="text" id="link">
+        </div>
+        <button type="button" onclick="validate()">Kiểm tra</button>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        function validate() {
+            const result = document.getElementById("result");
+            result.innerHTML = ""; // Clear old result
+
+            const fields = [{
+                id: "email",
+                name: "Email",
+                regex: /^[\w.-]+@([\w-]+\.)+[a-zA-Z]{2,}$/
+            }, {
+                id: "phone",
+                name: "Số điện thoại",
+                regex: /^(03|05|07|08|09)([0-9]{8})$/
+            }, {
+                id: "password",
+                name: "Mật khẩu",
+                regex: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+            }, {
+                id: "dob",
+                name: "Ngày sinh",
+                regex: /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/
+            }, {
+                id: "username",
+                name: "Username",
+                regex: /^[a-zA-Z0-9_]{5,15}$/
+            }, {
+                id: "ip",
+                name: "IP",
+                regex: /^(25[0-5]|2[0-4]\d|1\d{2}|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d{2}|[1-9]?\d)){3}$/
+            }, {
+                id: "postal",
+                name: "Mã bưu điện",
+                regex: /^\d{5}$/
+            }, {
+                id: "creditcard",
+                name: "Thẻ tín dụng",
+                regex: /^(\d{4}[-\s]?){3}\d{4}$/
+            }, {
+                id: "url",
+                name: "URL",
+                regex: /^(https?:\/\/)?([\w.-]+)+(:\d+)?(\/[\w.-]*)*\/?$/
+            }, {
+                id: "link",
+                name: "Link",
+                regex: /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/
+            }];
+
+            fields.forEach(field => {
+                const value = document.getElementById(field.id).value.trim();
+                const isValid = field.regex.test(value);
+                const status = isValid ? " Hợp lệ" : " Không hợp lệ";
+                const cssClass = isValid ? "valid" : "invalid";
+                result.innerHTML += `<p class="${cssClass}">${field.name}: ${status}</p>`;
+            });
+        }
+    </script>
+
+</body>
+
+</html>
+</head>
+
+<body>
+
+    </html>
+</body>
+
+</html>

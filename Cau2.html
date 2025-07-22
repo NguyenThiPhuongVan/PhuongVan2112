@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Kiểm tra Số điện thoại hợp lệ</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        
+        .error {
+            color: red;
+        }
+        
+        .success {
+            color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Nhập số điện thoại Việt Nam</h2>
+    <form id="phone-form">
+        <label for="phone">Số điện thoại:</label>
+        <input type="tel" id="phone" name="phone" pattern="0\d{9}" required>
+        <button type="submit">Submit</button>
+        <p id="phone-error" style="color:red;"></p>
+    </form>
+
+    <script>
+        document.getElementById('phone-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const phone = document.getElementById('phone').value;
+            const errorElement = document.getElementById('phone-error');
+            if (!/^0\d{9}$/.test(phone)) {
+                errorElement.textContent = 'Số điện thoại không hợp lệ. Hãy thử lại!';
+            } else {
+                errorElement.textContent = '';
+                // Process form submission
+            }
+        });
+    </script>
+
+</body>
+
+</html>

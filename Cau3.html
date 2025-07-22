@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiểm tra mật khẩu an toàn</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        
+        .error {
+            color: red;
+        }
+        
+        .success {
+            color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Nhập mật khẩu</h2>
+    <form id="passwordForm">
+        <label for="password">Mật khẩu:</label><br>
+        <input type="password" id="password" name="password" required>
+        <br><br>
+        <button type="submit">Kiểm tra</button>
+        <p id="passwordMessage"></p>
+    </form>
+
+    <script>
+        document.getElementById("passwordForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const password = document.getElementById("password").value;
+            const message = document.getElementById("passwordMessage");
+
+            const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+            if (password === "") {
+                message.textContent = "Vui lòng nhập mật khẩu.";
+                message.className = "error";
+            } else if (!passwordRegex.test(password)) {
+                message.textContent = "Mật khẩu chưa đủ mạnh cần ít nhất 8 ký tự, gồm chữ hoa, chữ thường, số và ký tự đặc biệt.";
+                message.className = "error";
+            } else {
+                message.textContent = "Mật khẩu hợp lệ và an toàn!";
+                message.className = "success";
+            }
+        });
+    </script>
+</body>
+
+</html>
